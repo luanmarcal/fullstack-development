@@ -61,7 +61,7 @@ public class MyServiceImplementation implements MyService {
 
         if(contains){
             System.out.println(device.getMacAddress() + " modificado com sucesso");
-            //myDevices.set(device);
+            myDevices.setter(device);
         }
         else{
             throw new RuntimeException("Mac address dont exist");
