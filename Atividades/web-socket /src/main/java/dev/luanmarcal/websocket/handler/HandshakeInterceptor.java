@@ -13,19 +13,27 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 
-        attributes.put("user", getSuperHero());
-        String path = request.getURI().getPath();
-        System.out.println(path);
+        String user = request.getURI().toString();
+
+        String userToConnect = user.substring(user.lastIndexOf("/") + 1);
+
+        if(userToConnect.equalsIgnoreCase(""))
+        {
+            userToConnect = getSuperHero();
+        }
+        attributes.put("user", userToConnect);
+
 
         return super.beforeHandshake(request, response, wsHandler, attributes);
     }
 
-    protected Object getSuperHero() {
+    protected String getSuperHero() {
 
-        String[] superheros = {"SuperMan", "Flash", "SpiderMan"};
+        String[] superHero = {"Batman" , "Hulk", "The Flash", "Cpt America"};
 
         Random random = new Random();
-        return superheros[random.nextInt(superheros.length)];
+
+        return superHero[random.nextInt(superHero.length)];
     }
 
 }

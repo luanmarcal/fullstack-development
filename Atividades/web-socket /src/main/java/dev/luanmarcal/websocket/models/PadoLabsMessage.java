@@ -26,9 +26,12 @@ public class PadoLabsMessage {
 
     @Override
     public String toString() {
-        return "PadoLabsMessage{" +
-                "user='" + user + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+        return "{\""
+                + "user\":\""
+                + user
+                + '\"'
+                + ", \"message\":\""
+                + message
+                + '\"' + '}';
     }
 }
